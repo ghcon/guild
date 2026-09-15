@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play-To-Win games at Greyhawke Game Con. Play featured board games for your chance to take one home, made possible by Rio Grande Games.">
+    <title>Play-To-Win Games | Greyhawke Game Con</title>
+
+    <style>
+        :root {
+            --gh-bg: #0f0f0f;
+            --gh-panel: #171717;
+            --gh-panel-light: #202020;
+            --gh-blue: #23498c;
+            --gh-blue-bright: #0079eb;
+            --gh-purple: #562075;
+            --gh-text: #e6e6e6;
+            --gh-muted: #b8b8b8;
+            --gh-border: #383838;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--gh-bg);
+            color: var(--gh-text);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .gh-p2w-page {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        /* Page heading */
+        .gh-p2w-hero {
+            text-align: center;
+            padding: 25px 15px 35px;
+            border-bottom: 3px solid var(--gh-blue);
+            margin-bottom: 35px;
+        }
+
+        .gh-p2w-hero h1 {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gh-p2w-hero h1 span {
+            color: #4da3ff;
+        }
+
+        .gh-p2w-hero p {
+            max-width: 780px;
+            margin: 0 auto;
+            color: var(--gh-muted);
+            font-size: 18px;
+        }
+
+        /* Sponsor banner */
+        .gh-p2w-sponsor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 18px 20px;
+            margin-bottom: 35px;
+            background: linear-gradient(135deg, #1c1730, #24143a);
+            border: 1px solid var(--gh-purple);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .gh-p2w-sponsor strong {
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .gh-p2w-sponsor span {
+            color: #d7b7eb;
+        }
+
+        /* Rules */
+        .gh-p2w-rules {
+            background: var(--gh-panel);
+            border: 1px solid var(--gh-border);
+            border-left: 5px solid var(--gh-blue-bright);
+            border-radius: 8px;
+            padding: 28px 30px;
+            margin-bottom: 45px;
+        }
+
+        .gh-p2w-rules h2,
+        .gh-p2w-games-heading h2 {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: 28px;
+            line-height: 1.3;
+        }
+
+        .gh-p2w-rules p {
+            margin: 0 0 16px;
+            color: var(--gh-muted);
+        }
+
+        .gh-p2w-rules ul {
+            margin: 0;
+            padding-left: 24px;
+            color: var(--gh-text);
+        }
+
+        .gh-p2w-rules li {
+            margin-bottom: 9px;
+        }
+
+        .gh-p2w-rules li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Games heading */
+        .gh-p2w-games-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .gh-p2w-games-heading h2 {
+            text-transform: uppercase;
+        }
+
+        .gh-p2w-games-heading p {
+            margin: 0;
+            color: var(--gh-muted);
+        }
+
+        /* Game cards */
+        .gh-p2w-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .gh-p2w-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            overflow: hidden;
+            background: var(--gh-panel);
+            border: 1px solid var(--gh-border);
+            border-radius: 8px;
+            transition: border-color 0.2s ease;
+        }
+
+        .gh-p2w-card:hover {
+            border-color: var(--gh-blue-bright);
+        }
+
+        .gh-p2w-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #242424;
+            border-bottom: 1px solid var(--gh-border);
+        }
+
+        .gh-p2w-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .gh-p2w-image-placeholder {
+            padding: 20px;
+            color: #8d8d8d;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .gh-p2w-card-content {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 22px 24px 25px;
+        }
+
+        .gh-p2w-card h3 {
+            margin: 0 0 10px;
+            color: #ffffff;
+            font-size: 24px;
+            line-height: 1.3;
+        }
+
+        .gh-p2w-card p {
+            margin: 0;
+            color: var(--gh-muted);
+            font-size: 16px;
+        }
+
+        /* Closing note */
+        .gh-p2w-footer {
+            margin-top: 45px;
+            padding: 25px;
+            background: var(--gh-panel-light);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .gh-p2w-footer p {
+            margin: 0;
+            color: var(--gh-muted);
+        }
+
+        .gh-p2w-footer strong {
+            color: #ffffff;
+        }
+
+        /* Mobile */
+        @media (max-width: 650px) {
+            .gh-p2w-page {
+                padding: 20px 12px 40px;
+            }
+
+            .gh-p2w-hero {
+                padding: 15px 5px 25px;
+                margin-bottom: 25px;
+            }
+
+            .gh-p2w-hero p {
+                font-size: 16px;
+            }
+
+            .gh-p2w-rules {
+                padding: 22px 20px;
+                margin-bottom: 32px;
+            }
+
+            .gh-p2w-rules h2,
+            .gh-p2w-games-heading h2 {
+                font-size: 24px;
+            }
+
+            .gh-p2w-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gh-p2w-card-content {
+                padding: 20px;
+            }
+
+            .gh-p2w-sponsor {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="gh-p2w-page">
+
+        <section class="gh-p2w-hero">
+            <h1>Play-To-<span>Win</span></h1>
+            <p>
+                Discover exciting games and play for your chance to take a game home!
+            </p>
+        </section>
+
+		<a href="https://www.riograndegames.com/" target="_spon">
+        <section class="gh-p2w-sponsor">
+			<div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="spon1.jpg" alt="Rio Grande Games" loading="lazy"></div></div>
+            <strong>Made possible by Rio Grande Games</strong>
+        </section>
+		</a>
+
+        <section class="gh-p2w-rules">
+            <h2>How Play-To-Win Works</h2>
+
+            <p>
+                Want to try a new game? Check out one of our featured games!
+            </p>
+
+            <ul>
+                <li>
+                   Check out a game.
+                </li>
+                <li>
+                    Play the game for at least one hour or the minimum time listed on the game box.
+                </li>
+                <li>
+                    The winner of the game keeps it.
+                </li>
+            </ul>
+        </section>
+
+        <section class="gh-p2w-games-heading">
+            <h2>Games Available</h2>
+        </section>
+
+        <section class="gh-p2w-grid">
+
+            <!-- 1. Imperial -->
+            <article class="gh-p2w-card">
+                <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="Imperial.jpg" alt="Imperial board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>Imperial</h3>
+                    <p>
+                        A strategic economic board game where players act as international investors manipulating European powers without any luck from dice or cards.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 2. Empires -->
+            <article class="gh-p2w-card">
+                <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="Empires.jpg" alt="Empires board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>Empires</h3>
+                    <p>
+                        A fast-paced economic negotiation and trading board game where players represent colonial European nations competing to gain the most support.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 3. Resafa -->
+            <article class="gh-p2w-card">
+               <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="Resafa.jpg" alt="Resafa board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>Resafa</h3>
+                    <p>
+                        A medium-heavy strategy board game where players act as merchants in a 3rd-century Middle Eastern desert outpost.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 4. Top Secret Spies -->
+            <article class="gh-p2w-card">
+               <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="Top Secret Spies.jpg" alt="Top Secret Spies board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>Top Secret Spies</h3>
+                    <p>
+                        A hidden-identity game where players move agents on the track, scoring points while bluffing to hide their true identity and sabotage opponents.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 5. Pictures -->
+            <article class="gh-p2w-card">
+                <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="Pictures.jpg" alt="Pictures board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>Pictures</h3>
+                    <p>
+                        A fast-paced, family-friendly game where players recreate specific photos using unconventional physical objects.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 6. Woodcraft -->
+            <article class="gh-p2w-card">
+                <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="Woodcraft.jpg" alt="Woodcraft board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>Woodcraft</h3>
+                    <p>
+                        A heavy-weight economic euro game where you run a woodland carpentry workshop operated by forest people.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 7. Zooloretto -->
+            <article class="gh-p2w-card">
+                <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="Zooloretto.jpg" alt="Zooloretto board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>Zooloretto</h3>
+                    <p>
+                        A family-friendly game where you build and manage your own animal park.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 8. Iberian Railways -->
+            <article class="gh-p2w-card">
+                <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="Iberian Railways.jpg" alt="Iberian Railways board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>Iberian Railways</h3>
+                    <p>
+                         A strategic cube-rail game where players start with zero cash and must take out loans to build, expand, and merge railway networks across Spain and Portugal to maximize their income.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 9. SCNF: France and Germany -->
+            <article class="gh-p2w-card">
+                <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="SCNF.jpg" alt="SCNF board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>SCNF: France and Germany</h3>
+                    <p>
+                        A fast-paced, light economic train and portfolio-building board game.
+                    </p>
+                </div>
+            </article>
+
+            <!-- 10. 1930 The Golden Age of Airlines -->
+            <article class="gh-p2w-card">
+                <div class="gh-p2w-image"><div class="gh-p2w-image-placeholder"><img src="1930.jpg" alt="1930 board game" loading="lazy"></div></div>
+                <div class="gh-p2w-card-content">
+                    <h3>1930: The Golden Age of Airlines</h3>
+                    <p>
+                        A medium-heavy economic game where players manage stocks and expand aviation routes to build the greatest fortune.
+                    </p>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="gh-p2w-footer">
+            <p>
+                <strong>Ready to play?</strong>
+                Visit the Play-To-Win area at Greyhawke Game Con and
+                discover your next favorite game!
+            </p>
+        </section>
+
+    </main>
+
+</body>
+</html>
