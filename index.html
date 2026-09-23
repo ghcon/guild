@@ -431,7 +431,7 @@ function moveGallery2(direction) {
 	if (galleryIndex2 < 0) {	galleryIndex2 = totalImages2 - 1;	}
 	if (galleryIndex2 > totalImages2 - 1) { galleryIndex2 = 0;	}
 	const imageWidth2 = getImageWidth2();
-	track2.style.transform = `translateX(-${galleryIndex2 * imageWidth}px)`;
+	track2.style.transform = `translateX(-${galleryIndex2 * imageWidth2}px)`;
 }
 
 window.addEventListener("resize", () => {
