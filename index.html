@@ -417,12 +417,12 @@ function moveGallery(direction) {
 }
 
 function moveGallery2(direction) {
-	const totalImages = track2.querySelectorAll("img").length;
-	galleryIndex += direction;
-	if (galleryIndex < 0) {	galleryIndex = totalImages - 1;	}
-	if (galleryIndex > totalImages - 1) { galleryIndex = 0;	}
-	const imageWidth = getImageWidth();
-	track2.style.transform = `translateX(-${galleryIndex * imageWidth}px)`;
+	const totalImages2 = track2.querySelectorAll("img").length;
+	galleryIndex2 += direction;
+	if (galleryIndex2 < 0) {	galleryIndex2 = totalImages2 - 1;	}
+	if (galleryIndex2 > totalImages2 - 1) { galleryIndex2 = 0;	}
+	const imageWidth2 = getImageWidth2();
+	track2.style.transform = `translateX(-${galleryIndex2 * imageWidth}px)`;
 }
 
 window.addEventListener("resize", () => {
@@ -430,9 +430,9 @@ window.addEventListener("resize", () => {
 	track.style.transform = `translateX(-${galleryIndex * imageWidth}px)`;
 });
 
-window.addEventListener("resize", () => {
-	const imageWidth = getImageWidth();
-	track2.style.transform = `translateX(-${galleryIndex * imageWidth}px)`;
+window.addEventListener("resize2", () => {
+	const imageWidth2 = getImageWidth2();
+	track2.style.transform = `translateX(-${galleryIndex * imageWidth2}px)`;
 });
 
 </script>
