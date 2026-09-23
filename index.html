@@ -149,7 +149,7 @@ a, a:hidden, a:visited, a:hover, a:active {
 		<button class="galleryBtn leftBtn" onclick="moveGallery2(-1)">&#10094;</button>
 
 		<div class="galleryViewport">
-			<div class="galleryTrack" id="galleryTrack">
+			<div class="galleryTrack" id="galleryTrack2">
 				<a href="conPic/1.jpg" target="_blank"><img src="conPic/1.jpg"></a>
 				<a href="conPic/2.jpg" target="_blank"><img src="conPic/2.jpg"></a>
 				<a href="conPic/3.jpg" target="_blank"><img src="conPic/3.jpg"></a>
@@ -397,6 +397,7 @@ document.addEventListener("keydown", function(event) { if (event.key === "Escape
 
 let galleryIndex = 0;
 const track = document.getElementById("galleryTrack");
+const track2 = document.getElementById("galleryTrack");
 
 function getImageWidth() {
 	const firstImage = track.querySelector("img");
@@ -415,9 +416,23 @@ function moveGallery(direction) {
 	track.style.transform = `translateX(-${galleryIndex * imageWidth}px)`;
 }
 
+function moveGallery2(direction) {
+	const totalImages = track2.querySelectorAll("img").length;
+	galleryIndex += direction;
+	if (galleryIndex < 0) {	galleryIndex = totalImages - 1;	}
+	if (galleryIndex > totalImages - 1) { galleryIndex = 0;	}
+	const imageWidth = getImageWidth();
+	track2.style.transform = `translateX(-${galleryIndex * imageWidth}px)`;
+}
+
 window.addEventListener("resize", () => {
 	const imageWidth = getImageWidth();
 	track.style.transform = `translateX(-${galleryIndex * imageWidth}px)`;
+});
+
+window.addEventListener("resize", () => {
+	const imageWidth = getImageWidth();
+	track2.style.transform = `translateX(-${galleryIndex * imageWidth}px)`;
 });
 
 </script>
