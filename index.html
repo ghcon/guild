@@ -397,12 +397,21 @@ document.addEventListener("keydown", function(event) { if (event.key === "Escape
 
 let galleryIndex = 0;
 const track = document.getElementById("galleryTrack");
-const track2 = document.getElementById("galleryTrack");
+let galleryIndex2 = 0;
+const track2 = document.getElementById("galleryTrack2");
 
 function getImageWidth() {
 	const firstImage = track.querySelector("img");
 	if (!firstImage) return 0;
 	const style = window.getComputedStyle(track);
+	const gap = parseInt(style.gap) || 0;
+	return firstImage.offsetWidth + gap;
+}
+
+function getImageWidth2() {
+	const firstImage = track2.querySelector("img");
+	if (!firstImage) return 0;
+	const style = window.getComputedStyle(track2);
 	const gap = parseInt(style.gap) || 0;
 	return firstImage.offsetWidth + gap;
 }
@@ -430,7 +439,7 @@ window.addEventListener("resize", () => {
 	track.style.transform = `translateX(-${galleryIndex * imageWidth}px)`;
 });
 
-window.addEventListener("resize2", () => {
+window.addEventListener("resize", () => {
 	const imageWidth2 = getImageWidth2();
 	track2.style.transform = `translateX(-${galleryIndex * imageWidth2}px)`;
 });
